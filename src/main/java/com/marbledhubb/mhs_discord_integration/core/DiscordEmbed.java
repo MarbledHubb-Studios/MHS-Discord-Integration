@@ -141,6 +141,10 @@ public class DiscordEmbed {
             return author(name, null, null);
         }
 
+        public Builder author(String name, String iconUrl) {
+            return author(name, null, iconUrl);
+        }
+
         // Fields, so separate segments of the Embed. Max of 25, inline only has 3 per line
         public Builder addField(String name, String value, boolean inline) {
             if (embed.fields == null) {

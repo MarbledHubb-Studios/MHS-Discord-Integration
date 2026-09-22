@@ -6,14 +6,15 @@ license="All Rights Reserved"
 
 [[mods]]
 modId="mhs_discord_integration"
-version="1.0.0.0"
+version="1.0.0"
 displayName="MHS Discord Integration"
 #displayURL="https://change.me.to.your.mods.homepage.example.invalid/"
 #logoFile="examplemod.png"
 credits="MarbledHubb Studios"
 authors="MarbledNull, WereF0X, Aimiwi"
+displayTest="IGNORE_SERVER_VERSION"
 
-description='''WIP'''
+description="""Integration between Minecraft server and Discord guild powered by webhooks and hope."""
 
 [[dependencies.mhs_discord_integration]]
     modId="forge"
