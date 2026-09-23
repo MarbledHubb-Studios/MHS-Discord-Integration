@@ -5,7 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.marbledhubb.mhs_discord_integration.MHSDiscordIntegration;
-import com.marbledhubb.mhs_discord_integration.configuration.ModGeneralConfiguration;
+import com.marbledhubb.mhs_discord_integration.configuration.config.ModGeneralConfiguration;
 import com.marbledhubb.mhs_discord_integration.core.DiscordWebhookMessage;
 
 import java.net.URI;

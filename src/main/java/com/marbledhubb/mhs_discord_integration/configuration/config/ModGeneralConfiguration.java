@@ -1,4 +1,4 @@
-package com.marbledhubb.mhs_discord_integration.configuration;
+package com.marbledhubb.mhs_discord_integration.configuration.config;
 
 import com.marbledhubb.mhs_discord_integration.MHSDiscordIntegration;
 import net.minecraftforge.api.distmarker.Dist;

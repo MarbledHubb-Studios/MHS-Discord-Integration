@@ -1,10 +1,9 @@
 package com.marbledhubb.mhs_discord_integration;
 
-import com.marbledhubb.mhs_discord_integration.configuration.ModGeneralConfiguration;
-import com.marbledhubb.mhs_discord_integration.configuration.ModPlayerEventsConfiguration;
+import com.marbledhubb.mhs_discord_integration.configuration.config.ModGeneralConfiguration;
+import com.marbledhubb.mhs_discord_integration.configuration.config.ModPlayerEventsConfiguration;
 import com.marbledhubb.mhs_discord_integration.configuration.WebhookChannelManager;
 import com.mojang.logging.LogUtils;
-import net.minecraft.world.level.gameevent.GameEventListener;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
