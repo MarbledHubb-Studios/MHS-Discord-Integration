@@ -1,5 +1,6 @@
 package com.marbledhubb.mhs_discord_integration.configuration.config.manager;
 
+import com.marbledhubb.mhs_discord_integration.configuration.MessageMode;
 import com.marbledhubb.mhs_discord_integration.configuration.config.PlayerEventsJsonConfig;
 import com.marbledhubb.mhs_discord_integration.configuration.config.core.AbstractJsonConfigManager;
 import com.marbledhubb.mhs_discord_integration.configuration.config.core.AdvancementCompletedEntry;
@@ -24,11 +25,11 @@ public class PlayerEventsConfigManager extends AbstractJsonConfigManager<PlayerE
     protected boolean fillMissingDefaults(PlayerEventsJsonConfig cfg) {
         boolean changed = false;
         if (cfg.playerJoinEvent == null) {
-            cfg.playerJoinEvent = MessageEventEntry.defaultEntry("Player Events");
+            cfg.playerJoinEvent = MessageEventEntry.defaultEntry("Player Events", MessageMode.STYLED);
             changed = true;
         }
         if (cfg.playerLeaveEvent == null) {
-            cfg.playerLeaveEvent = MessageEventEntry.defaultEntry("Player Events");
+            cfg.playerLeaveEvent = MessageEventEntry.defaultEntry("Player Events", MessageMode.STYLED);
             changed = true;
         }
         if (cfg.advancementCompleted == null) {
@@ -36,7 +37,7 @@ public class PlayerEventsConfigManager extends AbstractJsonConfigManager<PlayerE
             changed = true;
         }
         if (cfg.playerDeath == null) {
-            cfg.playerDeath = MessageEventEntry.defaultEntry("Player Events");
+            cfg.playerDeath = MessageEventEntry.defaultEntry("Player Events", MessageMode.STYLED);
             changed = true;
         }
         return changed;

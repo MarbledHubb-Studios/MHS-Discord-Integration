@@ -1,5 +1,6 @@
 package com.marbledhubb.mhs_discord_integration.configuration.config.manager;
 
+import com.marbledhubb.mhs_discord_integration.configuration.MessageMode;
 import com.marbledhubb.mhs_discord_integration.configuration.config.ChatEventsJsonConfig;
 import com.marbledhubb.mhs_discord_integration.configuration.config.ServerEventsJsonConfig;
 import com.marbledhubb.mhs_discord_integration.configuration.config.core.AbstractJsonConfigManager;
@@ -28,11 +29,18 @@ public class ChatEventsConfigManager extends AbstractJsonConfigManager<ChatEvent
             cfg.messageSent = ChatMessageEntry.defaultEntry("Chat Events");
             changed = true;
         }
+        if (cfg.commandExecuted == null) {
+            cfg.commandExecuted = MessageEventEntry.defaultEntry("Chat Events", MessageMode.SIMPLE);
+        }
         return changed;
     }
 
     public ChatMessageEntry getMessageSent() {
         return getConfig().messageSent;
+    }
+
+    public MessageEventEntry getCommandExecuted() {
+        return getConfig().commandExecuted;
     }
 
 }

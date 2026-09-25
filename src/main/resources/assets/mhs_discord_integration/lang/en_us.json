@@ -1,5 +1,7 @@
 {
   "server_events.mhs_discord_integration.startup": "The server has started!",
   "server_events.mhs_discord_integration.shutdown": "The server has stopped!",
-  "server_events.mhs_discord_integration.shutdown.details": "The server is now offline."
+  "server_events.mhs_discord_integration.shutdown.details": "The server is now offline.",
+  "chat_events.mhs_discord_integration.command_used": "The command %s was ran.",
+  "chat_events.mhs_discord_integration.command_used.player": "%s has ran the command %s"
 }

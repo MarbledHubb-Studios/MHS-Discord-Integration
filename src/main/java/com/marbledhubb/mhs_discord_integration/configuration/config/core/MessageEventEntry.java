@@ -22,9 +22,9 @@ public class MessageEventEntry {
         this.embedColor = embedColor;
     }
 
-    public static MessageEventEntry defaultEntry(String username) {
+    public static MessageEventEntry defaultEntry(String username, MessageMode messageMode) {
         return new MessageEventEntry(
-                MessageMode.STYLED.toString(),
+                messageMode.toString(),
                 "edit-me-or-i-wont-work",
                 username,
                 "https://example.com/example.png",

@@ -1,5 +1,6 @@
 package com.marbledhubb.mhs_discord_integration.configuration.config.manager;
 
+import com.marbledhubb.mhs_discord_integration.configuration.MessageMode;
 import com.marbledhubb.mhs_discord_integration.configuration.config.ServerEventsJsonConfig;
 import com.marbledhubb.mhs_discord_integration.configuration.config.core.AbstractJsonConfigManager;
 import com.marbledhubb.mhs_discord_integration.configuration.config.core.MessageEventEntry;
@@ -23,11 +24,11 @@ public class ServerEventsConfigManager extends AbstractJsonConfigManager<ServerE
     protected boolean fillMissingDefaults(ServerEventsJsonConfig cfg) {
         boolean changed = false;
         if (cfg.serverStartup == null) {
-            cfg.serverStartup = MessageEventEntry.defaultEntry("Server Events");
+            cfg.serverStartup = MessageEventEntry.defaultEntry("Server Events", MessageMode.STYLED);
             changed = true;
         }
         if (cfg.serverShutdown == null) {
-            cfg.serverShutdown = MessageEventEntry.defaultEntry("Server Events");
+            cfg.serverShutdown = MessageEventEntry.defaultEntry("Server Events", MessageMode.STYLED);
             changed = true;
         }
         return changed;
