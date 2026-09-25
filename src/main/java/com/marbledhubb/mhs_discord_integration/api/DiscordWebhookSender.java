@@ -5,7 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.marbledhubb.mhs_discord_integration.MHSDiscordIntegration;
-import com.marbledhubb.mhs_discord_integration.configuration.config.ModGeneralConfiguration;
+import com.marbledhubb.mhs_discord_integration.configuration.config.manager.GeneralConfigManager;
 import com.marbledhubb.mhs_discord_integration.core.DiscordWebhookMessage;
 
 import java.net.URI;
@@ -84,7 +84,7 @@ public final class DiscordWebhookSender {
     private static HttpResponse<String> sendWithRetry(HttpRequest request, int attempt) {
         try {
             HttpResponse<String> response = CLIENT.send(request, HttpResponse.BodyHandlers.ofString());
-            if (response.statusCode() == 429 && attempt < ModGeneralConfiguration.maxRetries) {
+            if (response.statusCode() == 429 && attempt < GeneralConfigManager.getInstance().getMaxRetries()) {
                 double retryAfterSeconds = 1.0;
                 try {
                     JsonObject body = JsonParser.parseString(response.body()).getAsJsonObject();

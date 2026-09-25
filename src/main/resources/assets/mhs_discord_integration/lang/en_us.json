@@ -1,0 +1,5 @@
+{
+  "server_events.mhs_discord_integration.startup": "The server has started!",
+  "server_events.mhs_discord_integration.shutdown": "The server has stopped!",
+  "server_events.mhs_discord_integration.shutdown.details": "The server is now offline."
+}

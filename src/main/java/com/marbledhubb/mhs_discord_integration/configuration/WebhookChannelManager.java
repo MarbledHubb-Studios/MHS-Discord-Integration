@@ -38,7 +38,7 @@ public class WebhookChannelManager {
         try {
             Path configDir = FMLPaths.CONFIGDIR.get().resolve(MHSDiscordIntegration.MODID);
             Files.createDirectories(configDir);
-            filePath = configDir.resolve("mhs-discord-integration-webhooks.json");
+            filePath = configDir.resolve("webhooks.json");
 
             if (!Files.exists(filePath)) {
                 Map<String, String> example = new LinkedHashMap<>();
