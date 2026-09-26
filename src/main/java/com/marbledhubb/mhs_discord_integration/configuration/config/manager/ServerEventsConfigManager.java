@@ -3,6 +3,7 @@ package com.marbledhubb.mhs_discord_integration.configuration.config.manager;
 import com.marbledhubb.mhs_discord_integration.configuration.MessageMode;
 import com.marbledhubb.mhs_discord_integration.configuration.config.ServerEventsJsonConfig;
 import com.marbledhubb.mhs_discord_integration.configuration.config.core.AbstractJsonConfigManager;
+import com.marbledhubb.mhs_discord_integration.configuration.config.core.ConsoleLogEntry;
 import com.marbledhubb.mhs_discord_integration.configuration.config.core.MessageEventEntry;
 
 public class ServerEventsConfigManager extends AbstractJsonConfigManager<ServerEventsJsonConfig> {
@@ -31,6 +32,9 @@ public class ServerEventsConfigManager extends AbstractJsonConfigManager<ServerE
             cfg.serverShutdown = MessageEventEntry.defaultEntry("Server Events", MessageMode.STYLED);
             changed = true;
         }
+        if (cfg.consoleLog == null) {
+            cfg.consoleLog = ConsoleLogEntry.defaultEntry("Console Log");
+        }
         return changed;
     }
 
@@ -41,4 +45,9 @@ public class ServerEventsConfigManager extends AbstractJsonConfigManager<ServerE
     public MessageEventEntry getServerShutdown() {
         return getConfig().serverShutdown;
     }
+
+    public ConsoleLogEntry getConsoleLog() {
+        return getConfig().consoleLog;
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.marbledhubb.mhs_discord_integration;
 
+import com.marbledhubb.mhs_discord_integration.api.DiscordConsoleLog;
 import com.marbledhubb.mhs_discord_integration.configuration.config.manager.ChatEventsConfigManager;
 import com.marbledhubb.mhs_discord_integration.configuration.config.manager.GeneralConfigManager;
 import com.marbledhubb.mhs_discord_integration.configuration.WebhookChannelManager;
@@ -32,11 +33,16 @@ public class MHSDiscordIntegration {
 
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
+
         WebhookChannelManager.getInstance().load();
+
         GeneralConfigManager.getInstance().load();
         ServerEventsConfigManager.getInstance().load();
         PlayerEventsConfigManager.getInstance().load();
         ChatEventsConfigManager.getInstance().load();
+
+        DiscordConsoleLog.init();
+
     }
 
 }
