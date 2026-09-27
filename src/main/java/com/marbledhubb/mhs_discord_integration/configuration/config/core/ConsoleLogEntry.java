@@ -25,7 +25,7 @@ public class ConsoleLogEntry {
                 "WARN",
                 "edit-me-or-i-wont-work",
                 username,
-                "https://example.com/example.png"
+                "default"
         );
     }
 }

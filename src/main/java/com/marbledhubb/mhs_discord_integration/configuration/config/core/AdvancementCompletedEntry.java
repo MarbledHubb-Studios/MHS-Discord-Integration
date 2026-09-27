@@ -21,7 +21,7 @@ public class AdvancementCompletedEntry extends MessageEventEntry {
                 MessageMode.STYLED.toString(),
                 "edit-me-or-i-wont-work",
                 username,
-                "https://example.com/example.png",
+                "default",
                 "FF0000",
                 true
         );

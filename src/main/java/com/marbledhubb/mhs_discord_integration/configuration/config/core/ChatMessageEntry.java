@@ -23,7 +23,7 @@ public class ChatMessageEntry extends MessageEventEntry {
                 MessageMode.SIMPLE.toString(),
                 "edit-me-or-i-wont-work",
                 username,
-                "https://example.com/example.png",
+                "default",
                 "FF0000",
                 true,
                 false

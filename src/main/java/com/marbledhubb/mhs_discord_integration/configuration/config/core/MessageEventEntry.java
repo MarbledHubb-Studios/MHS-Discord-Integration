@@ -27,7 +27,7 @@ public class MessageEventEntry {
                 messageMode.toString(),
                 "edit-me-or-i-wont-work",
                 username,
-                "https://example.com/example.png",
+                "default",
                 "FF0000"
         );
     }

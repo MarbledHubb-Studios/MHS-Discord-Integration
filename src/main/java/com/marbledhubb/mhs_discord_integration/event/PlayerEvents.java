@@ -3,6 +3,7 @@ package com.marbledhubb.mhs_discord_integration.event;
 import com.marbledhubb.mhs_discord_integration.api.DiscordWebhookAPI;
 import com.marbledhubb.mhs_discord_integration.configuration.AllowedMentions;
 import com.marbledhubb.mhs_discord_integration.configuration.MessageMode;
+import com.marbledhubb.mhs_discord_integration.configuration.config.manager.GeneralConfigManager;
 import com.marbledhubb.mhs_discord_integration.configuration.config.manager.PlayerEventsConfigManager;
 import com.marbledhubb.mhs_discord_integration.configuration.config.core.AdvancementCompletedEntry;
 import com.marbledhubb.mhs_discord_integration.configuration.config.core.MessageEventEntry;
@@ -34,9 +35,13 @@ public class PlayerEvents {
 
         Player player = event.getEntity();
 
+        String avatarUrl = configOptions.avatarUrl;
+        if (avatarUrl.equals("default"))
+            avatarUrl = GeneralConfigManager.getInstance().getDefaultAvatarUrl();
+
         DiscordWebhookMessage.Builder builder = DiscordWebhookMessage.builder()
                 .username(configOptions.username)
-                .avatarUrl(configOptions.avatarUrl)
+                .avatarUrl(avatarUrl)
                 .allowedMentions(AllowedMentions.none());
 
         Component message = Component.translatable("multiplayer.player.joined", player.getName().getString());
@@ -86,9 +91,13 @@ public class PlayerEvents {
 
         FrameType type = display.getFrame();
 
+        String avatarUrl = configOptions.avatarUrl;
+        if (avatarUrl.equals("default"))
+            avatarUrl = GeneralConfigManager.getInstance().getDefaultAvatarUrl();
+
         DiscordWebhookMessage.Builder builder = DiscordWebhookMessage.builder()
                 .username(configOptions.username)
-                .avatarUrl(configOptions.avatarUrl)
+                .avatarUrl(avatarUrl)
                 .allowedMentions(AllowedMentions.none());
 
         String translatable = "chat.type.advancement.task";
@@ -148,9 +157,13 @@ public class PlayerEvents {
 
         MessageMode messageMode = MessageMode.fromString(configOptions.mode);
 
+        String avatarUrl = configOptions.avatarUrl;
+        if (avatarUrl.equals("default"))
+            avatarUrl = GeneralConfigManager.getInstance().getDefaultAvatarUrl();
+
         DiscordWebhookMessage.Builder builder = DiscordWebhookMessage.builder()
                 .username(configOptions.username)
-                .avatarUrl(configOptions.avatarUrl)
+                .avatarUrl(avatarUrl)
                 .allowedMentions(AllowedMentions.none());
 
         DamageSource source = event.getSource();
@@ -204,9 +217,13 @@ public class PlayerEvents {
 
         Player player = event.getEntity();
 
+        String avatarUrl = configOptions.avatarUrl;
+        if (avatarUrl.equals("default"))
+            avatarUrl = GeneralConfigManager.getInstance().getDefaultAvatarUrl();
+
         DiscordWebhookMessage.Builder builder = DiscordWebhookMessage.builder()
                 .username(configOptions.username)
-                .avatarUrl(configOptions.avatarUrl)
+                .avatarUrl(avatarUrl)
                 .allowedMentions(AllowedMentions.none());
 
         Component message = Component.translatable("multiplayer.player.left", player.getName().getString());

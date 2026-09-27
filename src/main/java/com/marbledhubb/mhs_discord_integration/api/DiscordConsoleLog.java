@@ -2,6 +2,7 @@ package com.marbledhubb.mhs_discord_integration.api;
 
 import com.marbledhubb.mhs_discord_integration.configuration.AllowedMentions;
 import com.marbledhubb.mhs_discord_integration.configuration.config.core.ConsoleLogEntry;
+import com.marbledhubb.mhs_discord_integration.configuration.config.manager.GeneralConfigManager;
 import com.marbledhubb.mhs_discord_integration.configuration.config.manager.ServerEventsConfigManager;
 import com.marbledhubb.mhs_discord_integration.core.DiscordWebhookMessage;
 import org.apache.logging.log4j.Level;
@@ -51,7 +52,7 @@ public class DiscordConsoleLog extends AbstractAppender {
 
         PatternLayout layout = PatternLayout.newBuilder()
                 .withConfiguration(config)
-                .withPattern("[%d{HH:mm:ss}] [ %-5level] %msg")
+                .withPattern("[%d{HH:mm:ss}] [  %-5level] %msg")
                 .build();
 
         DiscordConsoleLog appender = new DiscordConsoleLog("ServerConsole", null, layout);
@@ -84,9 +85,12 @@ public class DiscordConsoleLog extends AbstractAppender {
                 while ((next = queue.poll()) != null && batch.length() < 1800) {
                     batch.append('\n').append(next);
                 }
+                String avatarUrl = config.avatarUrl;
+                if (avatarUrl.equals("default"))
+                    avatarUrl = GeneralConfigManager.getInstance().getDefaultAvatarUrl();
                 DiscordWebhookMessage message = DiscordWebhookMessage.builder()
                                 .username(config.username)
-                                        .avatarUrl(config.avatarUrl)
+                                        .avatarUrl(avatarUrl)
                                                 .allowedMentions(AllowedMentions.none())
                                                         .content("```" + batch.toString() + "```")
                                                                 .build();

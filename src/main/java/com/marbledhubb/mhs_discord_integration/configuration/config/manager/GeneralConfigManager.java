@@ -30,4 +30,9 @@ public class GeneralConfigManager extends AbstractJsonConfigManager<GeneralJsonC
     public int getMaxRetries() {
         return getConfig().maxRetries;
     }
+
+    public String getDefaultAvatarUrl() {
+        return getConfig().defaultAvatarUrl;
+    }
+
 }

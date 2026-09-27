@@ -6,7 +6,7 @@ import com.marbledhubb.mhs_discord_integration.configuration.MessageMode;
 import com.marbledhubb.mhs_discord_integration.configuration.config.core.ChatMessageEntry;
 import com.marbledhubb.mhs_discord_integration.configuration.config.core.MessageEventEntry;
 import com.marbledhubb.mhs_discord_integration.configuration.config.manager.ChatEventsConfigManager;
-import com.marbledhubb.mhs_discord_integration.configuration.config.manager.PlayerEventsConfigManager;
+import com.marbledhubb.mhs_discord_integration.configuration.config.manager.GeneralConfigManager;
 import com.marbledhubb.mhs_discord_integration.core.DiscordEmbed;
 import com.marbledhubb.mhs_discord_integration.core.DiscordWebhookMessage;
 import com.marbledhubb.mhs_discord_integration.util.PlayerUtils;
@@ -14,7 +14,6 @@ import com.mojang.brigadier.ParseResults;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.CommandEvent;
 import net.minecraftforge.event.ServerChatEvent;
@@ -35,9 +34,13 @@ public class ChatEvents {
 
         AllowedMentions allowedMentions = AllowedMentions.custom(configOptions.allowMassPings, configOptions.allowUserPings, false);
 
+        String avatarUrl = configOptions.avatarUrl;
+        if (avatarUrl.equals("default"))
+            avatarUrl = GeneralConfigManager.getInstance().getDefaultAvatarUrl();
+
         DiscordWebhookMessage.Builder builder = DiscordWebhookMessage.builder()
                 .username(configOptions.username)
-                .avatarUrl(configOptions.avatarUrl)
+                .avatarUrl(avatarUrl)
                 .allowedMentions(allowedMentions);
 
         Component chatMessage = event.getMessage();
@@ -98,9 +101,13 @@ public class ChatEvents {
 
         MessageMode messageMode = MessageMode.fromString(configOptions.mode);
 
+        String avatarUrl = configOptions.avatarUrl;
+        if (avatarUrl.equals("default"))
+            avatarUrl = GeneralConfigManager.getInstance().getDefaultAvatarUrl();
+
         DiscordWebhookMessage.Builder builder = DiscordWebhookMessage.builder()
                 .username(configOptions.username)
-                .avatarUrl(configOptions.avatarUrl)
+                .avatarUrl(avatarUrl)
                 .allowedMentions(AllowedMentions.none());
 
         switch (messageMode) {
