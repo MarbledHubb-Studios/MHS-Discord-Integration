@@ -11,19 +11,20 @@ import com.marbledhubb.mhs_discord_integration.core.DiscordEmbed;
 import com.marbledhubb.mhs_discord_integration.core.DiscordWebhookMessage;
 import com.marbledhubb.mhs_discord_integration.util.PlayerUtils;
 import net.minecraft.advancements.Advancement;
+import net.minecraft.advancements.AdvancementHolder;
+import net.minecraft.advancements.AdvancementType;
 import net.minecraft.advancements.DisplayInfo;
-import net.minecraft.advancements.FrameType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.player.AdvancementEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
+import net.neoforged.neoforge.event.entity.player.AdvancementEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 
-@Mod.EventBusSubscriber(value = Dist.DEDICATED_SERVER)
+@EventBusSubscriber(value = Dist.DEDICATED_SERVER)
 public class PlayerEvents {
 
     @SubscribeEvent
@@ -83,13 +84,15 @@ public class PlayerEvents {
         MessageMode messageMode = MessageMode.fromString(configOptions.mode);
 
         Player player = event.getEntity();
-        Advancement advancement = event.getAdvancement();
-        DisplayInfo display = advancement.getDisplay();
+        AdvancementHolder advancementHolder = event.getAdvancement();
+        Advancement advancement = advancementHolder.value();
 
-        if (display == null) return;
-        if (advancement.getParent() == null) return;
+        if (advancement.display().isEmpty()) return;
 
-        FrameType type = display.getFrame();
+        DisplayInfo displayInfo = advancement.display().get();
+        AdvancementType type = displayInfo.getType();
+
+        if (advancement.parent().isEmpty()) return;
 
         String avatarUrl = configOptions.avatarUrl;
         if (avatarUrl.equals("default"))
@@ -112,13 +115,13 @@ public class PlayerEvents {
         Component title = Component.translatable(
                 translatable,
                 "**" + player.getName().getString() + "**",
-                "**" + advancement.getDisplay().getTitle().getString() + "**"
+                "**" + advancement.display().get().getTitle().getString() + "**"
         );
 
         messageBuilder.append(title.getString());
 
         if (configOptions.includeDescription)
-            messageBuilder.append("\n").append("_").append(advancement.getDisplay().getDescription().getString()).append("_");
+            messageBuilder.append("\n").append("_").append(advancement.display().get().getDescription().getString()).append("_");
 
         switch (messageMode) {
 

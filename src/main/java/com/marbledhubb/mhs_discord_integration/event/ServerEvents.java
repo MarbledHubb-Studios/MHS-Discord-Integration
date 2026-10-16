@@ -10,13 +10,13 @@ import com.marbledhubb.mhs_discord_integration.core.DiscordEmbed;
 import com.marbledhubb.mhs_discord_integration.core.DiscordWebhookMessage;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.MinecraftServer;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.event.server.ServerStartedEvent;
-import net.minecraftforge.event.server.ServerStoppingEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.server.ServerStartedEvent;
+import net.neoforged.neoforge.event.server.ServerStoppingEvent;
 
-@Mod.EventBusSubscriber(value = Dist.DEDICATED_SERVER)
+@EventBusSubscriber(value = Dist.DEDICATED_SERVER)
 public class ServerEvents {
 
     @SubscribeEvent
