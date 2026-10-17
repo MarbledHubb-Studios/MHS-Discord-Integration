@@ -23,6 +23,8 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.player.AdvancementEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.MarkerManager;
 
 @EventBusSubscriber(value = Dist.DEDICATED_SERVER)
 public class PlayerEvents {

@@ -1,9 +1,12 @@
 package com.marbledhubb.mhs_discord_integration.api;
 
+import com.marbledhubb.mhs_discord_integration.core.DiscordAttachment;
 import com.marbledhubb.mhs_discord_integration.core.DiscordEmbed;
 import com.marbledhubb.mhs_discord_integration.core.DiscordWebhookMessage;
 import com.marbledhubb.mhs_discord_integration.configuration.WebhookChannelManager;
 
+import java.nio.file.Path;
+import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -26,6 +29,24 @@ public final class DiscordWebhookAPI {
     // Our normal sending thing that sends a message with text and up to 10 embeds
     public static CompletableFuture<Void> sendMessage(String channelAlias, DiscordWebhookMessage message) {
         return resolve(channelAlias).thenComposeSuccess(url -> DiscordWebhookSender.send(url, message));
+    }
+
+    // Sends ONLY one file
+    public static CompletableFuture<Void> sendFile(String channelAlias, Path file) {
+        return sendFiles(channelAlias, null, List.of(DiscordAttachment.of(file)));
+    }
+
+    // Sends one file with a text message
+    public static CompletableFuture<Void> sendFile(String channelAlias, Path file, String content) {
+        return sendFiles(channelAlias, DiscordWebhookMessage.builder().content(content).build(), List.of(DiscordAttachment.of(file)));
+    }
+
+    public static CompletableFuture<Void> sendFile(String channelAlias, DiscordAttachment file) {
+        return sendFiles(channelAlias, null, List.of(file));
+    }
+
+    public static CompletableFuture<Void> sendFiles(String channelAlias, DiscordWebhookMessage message, List<DiscordAttachment> files) {
+        return resolve(channelAlias).thenComposeSuccess(url -> DiscordWebhookSender.sendWithFiles(url, message, files));
     }
 
     // If you need further help with these, should check the DiscordWebhookSender class.
